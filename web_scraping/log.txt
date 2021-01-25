@@ -1,0 +1,113 @@
+****************************************
+~~~~~~~~~~~~~~~ Log file ~~~~~~~~~~~~~~~
+****************************************
+
+---------- Writing data from play number 0: antony-and-cleopatra ----------
+Writing file antony-and-cleopatra. Page: 353/353.[============>]   0.41: sec./page
+Finished writing... Time: 143.72s. File size: 0.26MB
+
+---------- Writing data from play number 1: asyoulikeit ----------
+Writing file asyoulikeit. Page: 243/243.[============>]   0.41: sec./page
+Finished writing... Time: 100.49s. File size: 0.23MB
+
+---------- Writing data from play number 2: errors ----------
+Writing file errors. Page: 163/163.[============>]   0.41: sec./page
+Finished writing... Time: 67.24s. File size: 0.15MB
+
+---------- Writing data from play number 3: coriolanus ----------
+Writing file coriolanus. Page: 335/335.[============>]   0.46: sec./page
+Finished writing... Time: 153.61s. File size: 0.27MB
+
+---------- Writing data from play number 4: hamlet ----------
+Writing file hamlet. Page: 337/337.[============>]   0.45: sec./page
+Finished writing... Time: 150.39s. File size: 0.31MB
+
+---------- Writing data from play number 5: henry4pt1 ----------
+Writing file henry4pt1. Page: 256/256.[============>]   0.39: sec./page
+Finished writing... Time: 100.63s. File size: 0.25MB
+
+---------- Writing data from play number 6: henry4pt2 ----------
+Writing file henry4pt2. Page: 537/537.[============>]   0.27: sec./page
+Finished writing... Time: 146.75s. File size: 0.27MB
+
+---------- Writing data from play number 7: henryv ----------
+Writing file henryv. Page: 276/276.[============>]   0.43: sec./page
+Finished writing... Time: 119.58s. File size: 0.27MB
+
+---------- Writing data from play number 8: juliuscaesar ----------
+Writing file juliuscaesar. Page: 238/238.[============>]   0.45: sec./page
+Finished writing... Time: 107.63s. File size: 0.20MB
+
+---------- Writing data from play number 9: lear ----------
+Writing file lear. Page: 310/310.[============>]   0.45: sec./page
+Finished writing... Time: 139.71s. File size: 0.28MB
+
+---------- Writing data from play number 10: macbeth ----------
+Writing file macbeth. Page: 218/218.[============>]   0.44: sec./page
+Finished writing... Time: 96.52s. File size: 0.18MB
+
+---------- Writing data from play number 11: measure-for-measure ----------
+Writing file measure-for-measure. Page: 254/254.[============>]   0.46: sec./page
+Finished writing... Time: 116.09s. File size: 0.22MB
+
+---------- Writing data from play number 12: merchant ----------
+Writing file merchant. Page: 230/230.[============>]   0.47: sec./page
+Finished writing... Time: 107.78s. File size: 0.21MB
+
+---------- Writing data from play number 13: msnd ----------
+Writing file msnd. Page: 180/180.[============>]   0.46: sec./page
+Finished writing... Time: 83.47s. File size: 0.18MB
+
+---------- Writing data from play number 14: muchado ----------
+Writing file muchado. Page: 238/238.[============>]   0.43: sec./page
+Finished writing... Time: 101.22s. File size: 0.22MB
+
+---------- Writing data from play number 15: othello ----------
+Writing file othello. Page: 306/306.[============>]   0.40: sec./page
+Finished writing... Time: 122.97s. File size: 0.26MB
+
+---------- Writing data from play number 16: richardii ----------
+Writing file richardii. Page: 232/232.[============>]   0.41: sec./page
+Finished writing... Time: 95.75s. File size: 0.21MB
+
+---------- Writing data from play number 17: richardiii ----------
+Writing file richardiii. Page: 342/342.[============>]   0.54: sec./page
+Finished writing... Time: 183.58s. File size: 0.30MB
+
+---------- Writing data from play number 18: romeojuliet ----------
+Writing file romeojuliet. Page: 286/286.[============>]   0.44: sec./page
+Finished writing... Time: 125.80s. File size: 0.26MB
+
+---------- Writing data from play number 19: sonnets ----------
+Writing file sonnets. Page: 154/154.[============>]   0.44: sec./page
+Finished writing... Time: 67.52s. File size: 0.22MB
+
+---------- Writing data from play number 20: shrew ----------
+Writing file shrew. Page: 248/248.[============>]   0.40: sec./page
+Finished writing... Time: 100.30s. File size: 0.22MB
+
+---------- Writing data from play number 21: tempest ----------
+Writing file tempest. Page: 202/202.[============>]   0.43: sec./page
+Finished writing... Time: 85.87s. File size: 0.17MB
+
+---------- Writing data from play number 22: twelfthnight ----------
+Writing file twelfthnight. Page: 242/242.[============>]   0.42: sec./page
+Finished writing... Time: 102.26s. File size: 0.21MB
+
+---------- Writing data from play number 23: twogentlemen ----------
+Writing file twogentlemen. Page: 188/188.[============>]   0.51: sec./page
+Finished writing... Time: 95.84s. File size: 0.18MB
+
+---------- Writing data from play number 24: winterstale ----------
+Writing file winterstale. Page: 280/280.[============>]   0.47: sec./page
+Finished writing... Time: 132.44s. File size: 0.25MB
+
+~~~~~~~~~~  Finished writing all files  ~~~~~~~~~~
+Time: 938.1806530952454
+
+**** Manual Error report ****
+Downloading henry4pt2 will fail. To fix this, you must start counting page numbers at 254 (i.e. the end of henry4pt1) instead of the default page_0
+
+Downloading the sonnets will also fail. These are longer texts and are numbered via the /sonnets_##/ as opposed to /page_##/. Making that fix in the source code will patch this.
+
+In all files, there are two errors the code fails to catch for some reason (there is cell mismatch between original and modern, yet somehow the lengths end up the same?). These occur in line 1121 of richardiii and 830 of romeojulie with the strings "this found i on my tent this morning" and "(to ROMEO) Stop your evil work, vile Montague!..." I fixed these entries by hand
