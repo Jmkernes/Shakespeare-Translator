@@ -63,7 +63,7 @@ flags.DEFINE_string('opt_name', default='adam', help='Available choices are set 
 flags.DEFINE_integer('batch_size', default=32, help='Batch size.')
 flags.DEFINE_integer('maxlen', default=50, help='Maximum input or target sequence length. \
 For computing and analyzing data length statistics, please see the methods of the DataManager class')
-flags.DEFINE_integer('clipvalue', default=0, 'Gradient clipping value')
+flags.DEFINE_integer('clipvalue', default=0, help='Gradient clipping value')
 
 # S3
 # DEEP LEARNING AMI
