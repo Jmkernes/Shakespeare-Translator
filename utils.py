@@ -23,8 +23,7 @@ def print_bar(step, tot, diff, loss):
         iter_message = f"Iteration {step+1:02d}/unknown:"
         time_message = f"{1/diff:.2f} it/s."
         loss_message = f"Loss: {loss:.3f}"
-        if step%100==0:
-            print(iter_message, time_message, loss_message, end='\n')
+        print(iter_message, time_message, loss_message, end='\r')
         return
     num_eq = int(10*(step+1)/tot)
     num_pd = 10-num_eq
@@ -35,8 +34,7 @@ def print_bar(step, tot, diff, loss):
     iter_message = f"Iteration {step+1:02d}/{tot}:"
     time_message = f"{1/diff:.2f} it/s. Est: {m:02d}m {s:02d}s"
     loss_message = f"Loss: {loss:.3f}"
-#    end = '\r' if step<tot-1 else '\n'
-    end = '\r' if step%100 else '\n'
+    end = '\r' if step<tot-1 else '\n'
     print(iter_message, bar, time_message, loss_message, end=end)
 
 

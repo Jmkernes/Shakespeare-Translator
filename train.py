@@ -1,4 +1,14 @@
 import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.FileHandler("training.log"),
+        logging.StreamHandler()
+    ]
+)
+
 logging.info("\n\n~~~~~~~~ Importing Modules ~~~~~~~~\n")
 
 import os
@@ -250,6 +260,11 @@ def main(argv):
             train_step(inp, tar)
             diff = (time.time()-start)/(step+1)
             print_bar(step, DATASET_SIZE, diff, train_loss.result().numpy())
+            if (step+1)%100==0:
+                iter_message = f"Iteration {step+1:02d}/{DATASET_SIZE}:"
+                time_message = f"{1/diff:.2f} it/s."
+                loss_message = f"Loss: {loss:.3f}"
+                logging.info(iter_message, time_message, loss_message)
 
             with train_summary_writer.as_default():
                 tf.summary.scalar('loss', train_loss.result(), step=glob_step)
@@ -288,8 +303,11 @@ def main(argv):
     except:
         pass
     logging.info(f"Saving final model to {'saved_models/'+FLAGS.model_name}")
-    model.save('saved_models/'+FLAGS.model_name)
-    logging.info(f"\n\nTotal time: {minutes:.02d}min. {seconds:.02d}sec.\n\n")
+    try:
+        model.save('saved_models/'+FLAGS.model_name)
+    except:
+        logging.error("Failed to save model.")
+    logging.info(f"\n\nTotal time: {minutes:02d}min. {seconds:02d}sec.\n\n")
 
 if __name__=="__main__":
     app.run(main)
