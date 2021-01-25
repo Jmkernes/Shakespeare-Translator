@@ -1,6 +1,7 @@
 import unittest
 import tensorflow as tf
 from model import *
+from utils import create_padding_mask, create_look_ahead_mask
 
 class TestLayers(unittest.TestCase):
 
