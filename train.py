@@ -280,16 +280,16 @@ def main(argv):
         logging.info(f'Saving checkpoint for epoch {epoch+1} at {ckpt_save_path}')
 
     tot_time = time.time()-absolute_start
-    minutes = tot_time//60
-    seconds = tot_time%60
+    minutes = int(tot_time)//60
+    seconds = int(tot_time)%60
     logging.info('*'*100+"\n\nTRAINING COMPLETE.\n\n"+'*'*100)
-    logging.info(f"\n\nTotal time: {minutes:.02d}min. {seconds:.02d}sec.\n\n")
     try:
         os.mkdir('saved_models')
     except:
         pass
     logging.info(f"Saving final model to {'saved_models/'+FLAGS.model_name}")
     model.save('saved_models/'+FLAGS.model_name)
+    logging.info(f"\n\nTotal time: {minutes:.02d}min. {seconds:.02d}sec.\n\n")
 
 if __name__=="__main__":
     app.run(main)

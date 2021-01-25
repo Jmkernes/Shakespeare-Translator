@@ -9,9 +9,9 @@ TAR_SP_MODEL_PREFIX=tokenizers/sp_orig16k
 
 # Model stuff
 D_MODEL=256
-NUM_HEADS=8
+NUM_HEADS=4
 D_FFN=2048
-NUM_LAYERS=6
+NUM_LAYERS=4
 DROPOUT_RATE=0.1
 # CUTOFF1=250
 # CUTOFF2=2500
@@ -24,7 +24,7 @@ OPT_NAME=adam
 MAXLEN=75
 
 # File prefix for checkpointing and TensorBoard
-MODEL_NAME=dmodel256_dffn1024_blocks12
+MODEL_NAME=dmodel256_dffn2048_blocks12
 
 echo "=== Beginning training ==="
 python3 train.py \
