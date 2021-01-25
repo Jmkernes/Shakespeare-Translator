@@ -260,10 +260,11 @@ def main(argv):
             train_step(inp, tar)
             diff = (time.time()-start)/(step+1)
             print_bar(step, DATASET_SIZE, diff, train_loss.result().numpy())
-            if (step+1)%100==0:
+            if (int(glob_step)+1)%100==0:
+                step = int(glob_step)
                 iter_message = f"Iteration {step+1:02d}/{DATASET_SIZE}:"
                 time_message = f"{1/diff:.2f} it/s."
-                loss_message = f"Loss: {loss:.3f}"
+                loss_message = f"Loss: {float(train_loss.result()):.3f}"
                 logging.info(iter_message, time_message, loss_message)
 
             with train_summary_writer.as_default():
