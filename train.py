@@ -270,7 +270,7 @@ def main(argv):
             DATASET_SIZE = int(glob_step)
 
         for inp, tar in valid_ds:
-            evaluation_step(valid_ds, tau(glob_step))
+            evaluation_step(inp, tar)
 
         with test_summary_writer.as_default():
             tf.summary.scalar('loss', valid_loss.result(), step=glob_step)
