@@ -63,6 +63,7 @@ flags.DEFINE_string('opt_name', default='adam', help='Available choices are set 
 flags.DEFINE_integer('batch_size', default=32, help='Batch size.')
 flags.DEFINE_integer('maxlen', default=50, help='Maximum input or target sequence length. \
 For computing and analyzing data length statistics, please see the methods of the DataManager class')
+flags.DEFINE_integer('clipvalue', default=0, 'Gradient clipping value')
 
 # S3
 # DEEP LEARNING AMI
@@ -139,7 +140,8 @@ def main(argv):
     learning_rate = TransformerSchedule(FLAGS.d_model, FLAGS.warmup_steps)
     optimizer = tf.keras.optimizers.get(FLAGS.opt_name)
     optimizer.learning_rate = learning_rate
-    optimizer.clipvalue = 0.1
+    if FLAGS.clipvalue:
+        optimizer.clipvalue = FLAGS.clipvalue
 
     # Setup the model
     tf.keras.backend.clear_session()
