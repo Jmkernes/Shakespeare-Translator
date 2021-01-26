@@ -170,17 +170,15 @@ def main(argv):
     valid_acc = tf.keras.metrics.Mean()
 
     logging.info("\n\nDefining training and evaluation steps...")
-    LOOKAHEAD_MASK = create_look_ahead_mask(FLAGS.max_position)
     @tf.function
     def train_step(inp, tar):
         tar_in = tar[:, :-1]
         tar_out = tar[:, 1:]
         tar_len = tf.shape(tar_in)[1]
-        lookahead = LOOKAHEAD_MASK[:, :, :tar_len, :tar_len]
-        padding = create_padding_mask(inp)
+        enc_padding_mask, look_ahead_mask, dec_padding_mask = create_masks(inp, tar_in)
         with tf.GradientTape() as tape:
-            logits, _ = model(inp, tar_in, training=True, enc_padding_mask=padding,
-                           look_ahead_mask=lookahead, dec_padding_mask=padding)
+            logits, _ = model(inp, tar_in, training=True, enc_padding_mask=enc_padding_mask,
+                           look_ahead_mask=look_ahead_mask, dec_padding_mask=dec_padding_mask)
             loss = loss_fn(tar_out, logits)
         accuracy = accuracy_fn(tar_out, logits)
         grads = tape.gradient(loss, model.trainable_variables)
@@ -244,7 +242,7 @@ def main(argv):
 
     ckpt_save_path = ckpt_manager.save()
     logging.info(f'Checkpointing model initialization at {ckpt_save_path}')
-    with open(checkpoint_path+'/config', 'w') as file:
+    with open(checkpoint_path+'/config.json', 'w') as file:
         file.write(json.dumps(config))
     logging.info(f"Writing model configuration to {checkpoint_path+'/config'}")
 
@@ -264,7 +262,7 @@ def main(argv):
             print_bar(step, DATASET_SIZE, diff, train_loss.result().numpy())
             if (int(glob_step)+1)%100==0:
                 step = int(glob_step)
-                iter_message = f"Iteration {step+1:02d}/{DATASET_SIZE}:"
+                iter_message = f"Iteration {step+1:02d}/{DATASET_SIZE*FLAGS.epochs}:"
                 time_message = f" {1/diff:.2f} it/s."
                 loss_message = f" Loss: {float(train_loss.result()):.3f}"
                 logging.info(iter_message+time_message+loss_message)
