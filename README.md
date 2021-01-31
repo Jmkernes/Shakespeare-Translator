@@ -29,7 +29,7 @@ The stucture of this repository is as follows:
     * translate_weights... - these two files hold the actual trained model
     * model_config.json - a dictionary containing the model configuration so we can easily reconstruct its architecture and load in the weights
 * **pretraining/**
-    This folder can be skipped. If interested, read the contents for more details and code. This folder implements a semi-supervised pretraining task to try to learn the encoder weights. 
+    * This folder can be skipped. If interested, read the contents for more details and code. This folder implements a semi-supervised pretraining task to try to learn the encoder weights. 
     We use the masked langauge model BERT task as our training objective (bi directional cloze task), whereby the model is fed an input sequence with randomly masked elements, and it has
     to predict the true values of those elements. In our experiments, we did not find that using pretrained embeddings improved performance.
 * create_tokenizer.py - a script to train the SentencePiece tokenizer. Use it if you want to experiment with the vocab size. Note the shakespearian corpus is upper bounded to ~13k tokens.
