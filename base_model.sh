@@ -2,35 +2,38 @@
 
 echo "=== Setting up configuration ==="
 
+# Saving the model stuff.
+# We actually default to datetime to prevent model overwrite.
+# MODEL_NAME=dmod512_dff1024_4lyr_4hd
+
 # Data stuff
-TFRECORDS_DIRECTORY=data_clean/tfrecords
-INP_SP_MODEL_PREFIX=tokenizers/sp_mod16k
-TAR_SP_MODEL_PREFIX=tokenizers/sp_orig16k
+INPUT_TEXT='data_clean/modern.txt'
+TARGET_TEXT='data_clean/original.txt'
+INP_SP_MODEL_FILE=tokenizers/modern2k.model
+TAR_SP_MODEL_FILE=tokenizers/original2k.model
+INP_NBEST_SIZE=5
+TAR_NBEST_SIZE=5
 
 # Model stuff
-D_MODEL=256
+D_MODEL=512
 NUM_HEADS=4
-D_FFN=2048
+D_FFN=1024
 NUM_LAYERS=4
 DROPOUT_RATE=0.1
-# CUTOFF1=250
-# CUTOFF2=2500
-# PROJ_FACTOR=4
 
-# Don't set proj_dims
+# Learning parameter stuff
 WARMUP_STEPS=4000
-EPOCHS=20
-OPT_NAME=adam
-MAXLEN=75
-
-# File prefix for checkpointing and TensorBoard
-MODEL_NAME=dmodel256_dffn2048_blocks12
+EPOCHS=21
+MAXLEN=100
 
 echo "=== Beginning training ==="
 python3 train.py \
-  --tfrecords_directory=${TFRECORDS_DIRECTORY} \
-  --inp_sp_model_prefix=${INP_SP_MODEL_PREFIX} \
-  --tar_sp_model_prefix=${TAR_SP_MODEL_PREFIX} \
+  --input_text=${INPUT_TEXT} \
+  --target_text=${TARGET_TEXT} \
+  --inp_nbest_size=${INP_NBEST_SIZE} \
+  --tar_nbest_size=${TAR_NBEST_SIZE} \
+  --inp_sp_model_file=${INP_SP_MODEL_FILE} \
+  --tar_sp_model_file=${TAR_SP_MODEL_FILE} \
   --d_model=${D_MODEL} \
   --num_heads=${NUM_HEADS} \
   --d_ffn=${D_FFN} \
@@ -38,11 +41,7 @@ python3 train.py \
   --dropout_rate=${DROPOUT_RATE} \
   --warmup_steps=${WARMUP_STEPS} \
   --opt_name=${OPT_NAME} \
-  --epochs=${EPOCHS} \
   --maxlen=${MAXLEN} \
-  # --cutoffs=${CUTOFF1} \
-  # --cutoffs=${CUTOFF2} \
-  # --proj_factor=${PROJ_FACTOR} \
   # --model_name=${MODEL_NAME} \
 
 echo "=== Finished training. Congrats! ==="

@@ -35,11 +35,11 @@ def build_sentencepiece_model(input_file, model_prefix, vocab_size, lowercase):
     return f"{model_prefix}.model"
 
 
-def load_sentencepiece_model(model_proto):
+def load_sentencepiece_model(model_proto, nbest_size=1):
     if not os.path.isfile(model_proto):
         raise FileExistsError(f"The sentencepiece model file '{model_proto}' does not exist.")
     proto = tf.io.gfile.GFile(model_proto, 'rb').read()
-    return tf_text.SentencepieceTokenizer(model=proto)
+    return tf_text.SentencepieceTokenizer(model=proto, nbest_size=nbest_size)
 
 def find_dataset_size(dataset):
     return tf.cast(dataset.reduce(0, lambda x, _: x+1), tf.int64)
@@ -191,6 +191,23 @@ class DataManager:
             'tar_sp_model_prefix': tar_sp_model_prefix
         }
         return cls.initialize_from_tfrecord(tfrecord_configs)
+
+    @classmethod
+    def directly_from_text(cls, configs):
+        input_text = configs['input_text']
+        target_text = configs['target_text']
+        inp_sp_model_file = configs['inp_sp_model_file']
+        tar_sp_model_file = configs['tar_sp_model_file']
+        inp_nbest_size = configs['inp_nbest_size']
+        tar_nbest_size = configs['tar_nbest_size']
+
+        inp_tokenizer = load_sentencepiece_model(inp_sp_model_file, inp_nbest_size)
+        tar_tokenizer = load_sentencepiece_model(tar_sp_model_file, tar_nbest_size)
+        inp_ds = tf.data.TextLineDataset(input_text)
+        tar_ds = tf.data.TextLineDataset(target_text)
+        ds = tf.data.Dataset.zip((inp_ds, tar_ds))
+        ds = ds.map(lambda x,y: (inp_tokenizer.tokenize(x), tar_tokenizer.tokenize(y)))
+        return cls(ds, inp_tokenizer, tar_tokenizer)
 
     @classmethod
     def initialize_from_tfrecord(cls, configs):

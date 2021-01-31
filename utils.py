@@ -1,6 +1,8 @@
 import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
+from difflib import SequenceMatcher
+
 
 def create_padding_mask(seq):
     seq = tf.cast(tf.math.equal(seq, 0), tf.float32)
@@ -47,12 +49,10 @@ def print_bar(step, tot, diff, loss):
     end = '\r' if step<tot-1 else '\n'
     print(iter_message, bar, time_message, loss_message, end=end)
 
-def predict(input_sentence, inp_tokenizer, tar_tokenizer, temp=1):
-    inp = tf.concat([[1], inp_tokenizer.tokenize(input_sentence), [2]], 0)
-    tar = tf.constant([1], dtype=inp.dtype)
-    inp = tf.expand_dims(inp, 0)
-    tar = tf.expand_dims(tar, 0)
-    for i in range(10):
+def predict(input_sentence, inp_tokenizer, model, temp=1, max_length=100):
+    inp = tf.concat([[1], inp_tokenizer.tokenize(input_sentence), [2]], 0)[tf.newaxis, :]
+    tar = tf.constant([1], dtype=inp.dtype)[tf.newaxis, :]
+    for i in range(max_length):
         enc_mask, comb_mask, dec_mask = create_masks(inp, tar)
         preds, weights = model(inp, tar, training=False, enc_padding_mask=enc_mask,
                            look_ahead_mask=comb_mask, dec_padding_mask=dec_mask)
@@ -60,72 +60,87 @@ def predict(input_sentence, inp_tokenizer, tar_tokenizer, temp=1):
         if tf.reduce_all(tf.equal(next_token, 2)):
             break
         tar = tf.concat([tar, next_token], axis=1)
-    out = tar[0,1:]
-    out = tar_tokenizer.detokenize(out)
-    out = str(tf.strings.reduce_join(out))
-    return out, weights
+    return tar, weights
+
+def plot_attn_weights(inp_text, tar_seq, attn_weights,
+                      inp_tokenizer, tar_tokenizer):
+    fig = plt.figure(figsize=(16, 16))
+
+    inp_seq = inp_tokenizer.tokenize(inp_text)
+    tar_seq = tf.squeeze(tar_seq, 0)
+    inp_seq = [x.numpy().decode() for x in inp_tokenizer.id_to_string(inp_seq)]
+    tar_seq = [x.numpy().decode() for x in tar_tokenizer.id_to_string(tar_seq)]
+    attn_weights = tf.squeeze(attn_weights, 0)
+    for head in range(attention.shape[0]):
+        ax = fig.add_subplot(2, 2, head+1)
+        ax.matshow(attn_weights[head], cmap='viridis')
+        fontdict = {'fontsize': 14}
+        ax.set_xticks(range(len(inp_seq)+2))
+        ax.set_yticks(range(len(tar_seq)))
+        ax.set_xticklabels(['<sos>']+inp_seq+['<eos>'], fontdict=fontdict,
+                           rotation=45)
+        ax.set_yticklabels(tar_seq[1:]+['<eos>'], fontdict=fontdict)
+        ax.set_xlabel('Head {}'.format(head+1))
+
+    plt.tight_layout()
+    plt.show()
 
 
-# def evaluate(inp_sentence):
-#     start_token = [1]
-#     end_token = [2]
-#     inp_sentence = start_token + tokenizer_pt.encode(inp_sentence) + end_token
-#     encoder_input = tf.expand_dims(inp_sentence, 0)
-#
-#     # as the target is english, the first word to the transformer should be the
-#     # english start token.
-#     decoder_input = [tokenizer_en.vocab_size]
-#     output = tf.expand_dims(decoder_input, 0)
-#
-#     for i in range(MAX_LENGTH):
-#         enc_padding_mask, combined_mask, dec_padding_mask = create_masks(
-#             encoder_input, output)
-#
-#         # predictions.shape == (batch_size, seq_len, vocab_size)
-#         predictions, attention_weights = transformer(
-#             encoder_input, output, False, enc_padding_mask,
-#             combined_mask, dec_padding_mask)
-#
-#         # select the last word from the seq_len dimension
-#         predictions = predictions[: ,-1:, :]  # (batch_size, 1, vocab_size)
-#
-#         predicted_id = tf.cast(tf.argmax(predictions, axis=-1), tf.int32)
-#
-#         # return the result if the predicted_id is equal to the end token
-#         if predicted_id == tokenizer_en.vocab_size+1:
-#             return tf.squeeze(output, axis=0), attention_weights
-#
-#         # concatentate the predicted_id to the output which is given to the decoder
-#         # as its input.
-#         output = tf.concat([output, predicted_id], axis=-1)
-#     return tf.squeeze(output, axis=0), attention_weights
+def batch_random_predict(input_text, inp_tokenizer, model,
+                         temp=1.0, n_samples=8, max_length=75):
 
-# def plot_attention_weights(attention, sentence, result, layer):
-#     fig = plt.figure(figsize=(16, 8))
-#     sentence = tokenizer_pt.encode(sentence)
-#     attention = tf.squeeze(attention[layer], axis=0)
-#     for head in range(attention.shape[0]):
-#         ax = fig.add_subplot(2, 4, head+1)
-#         ax.matshow(attention[head][:-1, :], cmap='viridis')
-#         fontdict = {'fontsize': 10}
-#         ax.set_xticks(range(len(sentence)+2))
-#         ax.set_yticks(range(len(result)))
-#         ax.set_ylim(len(result)-1.5, -0.5)
-#         ax.set_xticklabels(
-#             ['<sos>']+[tokenizer_pt.decode([i]) for i in sentence]+['<eos>'],
-#             fontdict=fontdict, rotation=90)
-#         ax.set_yticklabels([tokenizer_en.decode([i]) for i in result
-#                             if i < tokenizer_en.vocab_size],
-#                            fontdict=fontdict)
-#         ax.set_xlabel('Head {}'.format(head+1))
-#     plt.tight_layout()
-#     plt.show()
+    inp = tf.concat([[1], inp_tokenizer.tokenize(input_text), [2]], 0)
+    inp = tf.repeat(inp[tf.newaxis, :], n_samples, axis=0)
 
-# def translate(sentence, plot=''):
-#     result, attention_weights = evaluate(sentence)
-#     predicted_sentence = tokenizer_en.decode([i for i in result
-#                                             if i < tokenizer_en.vocab_size])
-#     print('Input: {}'.format(sentence))
-#     print('Predicted translation: {}'.format(predicted_sentence))
-#     if plot:
-#         plot_attention_weights(attention_weights, sentence, result, plot)
+    tar = tf.ones((n_samples,1), dtype=inp.dtype)
+    mask = tf.ones((n_samples, 1), dtype=tf.bool) # for ended sentences
+
+    for _ in range(max_length):
+        enc_mask, comb_mask, dec_mask = create_masks(inp, tar)
+        logits, weights = model(inp, tar, training=False,
+                               enc_padding_mask=enc_mask,
+                               look_ahead_mask=comb_mask,
+                               dec_padding_mask=dec_mask)
+
+        logits = logits[:,-1,:]/tf.cast(temp, tf.float32)
+        next_tokens = tf.cast(tf.random.categorical(logits, 1), inp.dtype)
+
+        # replace any already finished sentences with padding 4 next token
+        next_tokens = tf.where(mask, next_tokens, 0)
+
+        # update mask. to stay true, it must:
+        # 1) already be true
+        # 2) not currently be an end of sentence token
+        mask = tf.logical_and(mask, tf.not_equal(next_tokens, 2))
+        tar = tf.concat([tar, next_tokens], axis=1)
+        if not tf.reduce_any(mask):
+            break
+    return tar, weights
+
+def find_most_similar(arr, topK=0):
+    """ For each row, it computes the mean similarity score with all other
+    rows and stores it in sims. Then it chooses the row with highest mean
+    and returns the array at that index."""
+    sims = []
+    N = arr.shape[0]
+    for i in range(N):
+        sims.append(np.mean([SequenceMatcher(a=arr[i], b=arr[j]).ratio()
+                  for j in range(N) if j!=i]))
+    if topK:
+        ids = np.argpartition(sims, -topK)[-topK:]
+        return sorted(ids, key=lambda x: sims[x])
+    return np.argmax(sims)
+
+def minimum_bayes_risk_predict(input_text, inp_tokenizer, model, topK=0,
+                               temp=1.0, max_length=75, n_samples=8):
+    tar_batch, weights_batch = batch_random_predict(
+        input_text=input_text,
+        inp_tokenizer=inp_tokenizer,
+        model=model,
+        temp=temp,
+        max_length=max_length,
+        n_samples=n_samples
+    )
+    tar_batch = tar_batch.numpy()
+    idx = find_most_similar(tar_batch)
+    return tar_batch[idx], weights_batch[idx]

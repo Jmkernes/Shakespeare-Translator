@@ -1,0 +1,1 @@
+{"num_layers": 4, "d_model": 512, "num_heads": 4, "d_ffn": 1024, "input_vocab_size": 2048, "target_vocab_size": 2048, "pe_input": 512, "pe_target": 512, "p_drop": 0.1}

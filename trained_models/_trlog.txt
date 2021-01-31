@@ -1,0 +1,217 @@
+~~~~~~~~~~ Beginning training ~~~~~~~~~~
+
+---------- Epoch 1/20 ----------
+Iteration 100/13600: 3.26 it/s. Loss: 7.006 Accuracy: 0.054
+Iteration 200/13600: 3.90 it/s. Loss: 6.601 Accuracy: 0.068
+Iteration 300/13600: 4.19 it/s. Loss: 6.324 Accuracy: 0.084
+Iteration 400/13600: 4.37 it/s. Loss: 6.131 Accuracy: 0.098
+Iteration 500/13600: 4.47 it/s. Loss: 5.989 Accuracy: 0.108
+Input sentence:	where are you?
+Output sentence:	tf.Tensor(b'gracious me?', shape=(), dtype=string)
+Iteration 600/13600: 4.52 it/s. Loss: 5.865 Accuracy: 0.118
+
+---------- Epoch 2/20 ----------
+Iteration 700/13600: 4.94 it/s. Loss: 5.049 Accuracy: 0.179
+Iteration 800/13600: 4.95 it/s. Loss: 4.978 Accuracy: 0.183
+Iteration 900/13600: 4.96 it/s. Loss: 4.919 Accuracy: 0.187
+Iteration 1000/13600: 4.96 it/s. Loss: 4.867 Accuracy: 0.190
+Input sentence:	where are you?
+Output sentence:	tf.Tensor(b'how lady?', shape=(), dtype=string)
+Iteration 1100/13600: 4.93 it/s. Loss: 4.825 Accuracy: 0.193
+Iteration 1200/13600: 4.94 it/s. Loss: 4.783 Accuracy: 0.197
+
+---------- Epoch 3/20 ----------
+Iteration 1300/13600: 4.95 it/s. Loss: 4.505 Accuracy: 0.218
+Iteration 1400/13600: 4.95 it/s. Loss: 4.461 Accuracy: 0.222
+Iteration 1500/13600: 4.95 it/s. Loss: 4.435 Accuracy: 0.226
+Input sentence:	where are you?
+Output sentence:	tf.Tensor(b'what wilt doth thou an master?', shape=(), dtype=string)
+Iteration 1600/13600: 4.90 it/s. Loss: 4.403 Accuracy: 0.231
+Iteration 1700/13600: 4.92 it/s. Loss: 4.366 Accuracy: 0.235
+Iteration 1800/13600: 4.93 it/s. Loss: 4.340 Accuracy: 0.239
+
+---------- Epoch 4/20 ----------
+Iteration 1900/13600: 4.95 it/s. Loss: 4.121 Accuracy: 0.264
+Iteration 2000/13600: 4.95 it/s. Loss: 4.109 Accuracy: 0.264
+Input sentence:	where are you?
+Output sentence:	tf.Tensor(b'where are you should be?', shape=(), dtype=string)
+Iteration 2100/13600: 4.90 it/s. Loss: 4.089 Accuracy: 0.268
+Iteration 2200/13600: 4.92 it/s. Loss: 4.068 Accuracy: 0.270
+Iteration 2300/13600: 4.92 it/s. Loss: 4.049 Accuracy: 0.273
+Iteration 2400/13600: 4.93 it/s. Loss: 4.034 Accuracy: 0.274
+
+---------- Epoch 5/20 ----------
+Iteration 2500/13600: 4.93 it/s. Loss: 3.880 Accuracy: 0.290
+Input sentence:	where are you?
+Output sentence:	tf.Tensor(b'where are thou wilt?', shape=(), dtype=string)
+Iteration 2600/13600: 4.87 it/s. Loss: 3.860 Accuracy: 0.292
+Iteration 2700/13600: 4.90 it/s. Loss: 3.846 Accuracy: 0.294
+Iteration 2800/13600: 4.91 it/s. Loss: 3.830 Accuracy: 0.296
+Iteration 2900/13600: 4.92 it/s. Loss: 3.814 Accuracy: 0.298
+Iteration 3000/13600: 4.92 it/s. Loss: 3.801 Accuracy: 0.301
+Input sentence:	where are you?
+Output sentence:	tf.Tensor(b'resar?', shape=(), dtype=string)
+
+---------- Epoch 6/20 ----------
+Iteration 3100/13600: 4.94 it/s. Loss: 3.652 Accuracy: 0.319
+Iteration 3200/13600: 4.95 it/s. Loss: 3.654 Accuracy: 0.318
+Iteration 3300/13600: 4.95 it/s. Loss: 3.645 Accuracy: 0.320
+Iteration 3400/13600: 4.95 it/s. Loss: 3.628 Accuracy: 0.322
+Iteration 3500/13600: 4.95 it/s. Loss: 3.613 Accuracy: 0.324
+Input sentence:	where are you?
+Output sentence:	tf.Tensor(b'where are you?', shape=(), dtype=string)
+Iteration 3600/13600: 4.93 it/s. Loss: 3.606 Accuracy: 0.325
+
+---------- Epoch 7/20 ----------
+Iteration 3700/13600: 4.96 it/s. Loss: 3.504 Accuracy: 0.337
+Iteration 3800/13600: 4.95 it/s. Loss: 3.495 Accuracy: 0.338
+Iteration 3900/13600: 4.95 it/s. Loss: 3.473 Accuracy: 0.342
+Iteration 4000/13600: 4.95 it/s. Loss: 3.464 Accuracy: 0.343
+Input sentence:	where are you?
+Output sentence:	tf.Tensor(b'where are you?', shape=(), dtype=string)
+Iteration 4100/13600: 4.93 it/s. Loss: 3.452 Accuracy: 0.345
+Iteration 4200/13600: 4.93 it/s. Loss: 3.439 Accuracy: 0.347
+
+---------- Epoch 8/20 ----------
+Iteration 4300/13600: 4.94 it/s. Loss: 3.331 Accuracy: 0.360
+Iteration 4400/13600: 4.94 it/s. Loss: 3.327 Accuracy: 0.360
+Iteration 4500/13600: 4.94 it/s. Loss: 3.316 Accuracy: 0.363
+Input sentence:	where are you?
+Output sentence:	tf.Tensor(b'whither art thou?', shape=(), dtype=string)
+Iteration 4600/13600: 4.92 it/s. Loss: 3.302 Accuracy: 0.365
+Iteration 4700/13600: 4.93 it/s. Loss: 3.295 Accuracy: 0.367
+Iteration 4800/13600: 4.93 it/s. Loss: 3.291 Accuracy: 0.367
+
+---------- Epoch 9/20 ----------
+Iteration 4900/13600: 4.95 it/s. Loss: 3.226 Accuracy: 0.374
+Iteration 5000/13600: 4.95 it/s. Loss: 3.199 Accuracy: 0.377
+Input sentence:	where are you?
+Output sentence:	tf.Tensor(b'where are you?', shape=(), dtype=string)
+Iteration 5100/13600: 4.91 it/s. Loss: 3.179 Accuracy: 0.380
+Iteration 5200/13600: 4.92 it/s. Loss: 3.173 Accuracy: 0.382
+Iteration 5300/13600: 4.92 it/s. Loss: 3.170 Accuracy: 0.382
+Iteration 5400/13600: 4.93 it/s. Loss: 3.163 Accuracy: 0.384
+
+---------- Epoch 10/20 ----------
+Iteration 5500/13600: 4.94 it/s. Loss: 3.091 Accuracy: 0.394
+Input sentence:	where are you?
+Output sentence:	tf.Tensor(b"where's ye?", shape=(), dtype=string)
+Iteration 5600/13600: 4.85 it/s. Loss: 3.069 Accuracy: 0.398
+Iteration 5700/13600: 4.87 it/s. Loss: 3.061 Accuracy: 0.399
+Iteration 5800/13600: 4.89 it/s. Loss: 3.048 Accuracy: 0.401
+Iteration 5900/13600: 4.90 it/s. Loss: 3.044 Accuracy: 0.401
+Iteration 6000/13600: 4.91 it/s. Loss: 3.042 Accuracy: 0.401
+Input sentence:	where are you?
+Output sentence:	tf.Tensor(b'what are you?', shape=(), dtype=string)
+
+---------- Epoch 11/20 ----------
+Iteration 6100/13600: 4.95 it/s. Loss: 2.957 Accuracy: 0.411
+Iteration 6200/13600: 4.94 it/s. Loss: 2.966 Accuracy: 0.410
+Iteration 6300/13600: 4.94 it/s. Loss: 2.954 Accuracy: 0.413
+Iteration 6400/13600: 4.94 it/s. Loss: 2.941 Accuracy: 0.415
+Iteration 6500/13600: 4.94 it/s. Loss: 2.943 Accuracy: 0.415
+Input sentence:	where are you?
+Output sentence:	tf.Tensor(b'where are you?', shape=(), dtype=string)
+Iteration 6600/13600: 4.93 it/s. Loss: 2.937 Accuracy: 0.416
+
+---------- Epoch 12/20 ----------
+Iteration 6700/13600: 4.94 it/s. Loss: 2.890 Accuracy: 0.420
+Iteration 6800/13600: 4.95 it/s. Loss: 2.881 Accuracy: 0.422
+Iteration 6900/13600: 4.94 it/s. Loss: 2.876 Accuracy: 0.423
+Iteration 7000/13600: 4.94 it/s. Loss: 2.853 Accuracy: 0.427
+Input sentence:	where are you?
+Output sentence:	tf.Tensor(b'where dost thou?', shape=(), dtype=string)
+Iteration 7100/13600: 4.92 it/s. Loss: 2.846 Accuracy: 0.428
+Iteration 7200/13600: 4.92 it/s. Loss: 2.844 Accuracy: 0.428
+
+---------- Epoch 13/20 ----------
+Iteration 7300/13600: 4.94 it/s. Loss: 2.779 Accuracy: 0.438
+Iteration 7400/13600: 4.96 it/s. Loss: 2.777 Accuracy: 0.438
+Iteration 7500/13600: 4.96 it/s. Loss: 2.779 Accuracy: 0.437
+Input sentence:	where are you?
+Output sentence:	tf.Tensor(b'where are you?', shape=(), dtype=string)
+Iteration 7600/13600: 4.92 it/s. Loss: 2.762 Accuracy: 0.441
+Iteration 7700/13600: 4.93 it/s. Loss: 2.750 Accuracy: 0.442
+Iteration 7800/13600: 4.93 it/s. Loss: 2.751 Accuracy: 0.442
+
+---------- Epoch 14/20 ----------
+Iteration 7900/13600: 4.94 it/s. Loss: 2.686 Accuracy: 0.451
+Iteration 8000/13600: 4.95 it/s. Loss: 2.681 Accuracy: 0.452
+Input sentence:	where are you?
+Output sentence:	tf.Tensor(b'whither do you gablely?', shape=(), dtype=string)
+Iteration 8100/13600: 4.89 it/s. Loss: 2.687 Accuracy: 0.451
+Iteration 8200/13600: 4.90 it/s. Loss: 2.682 Accuracy: 0.453
+Iteration 8300/13600: 4.92 it/s. Loss: 2.674 Accuracy: 0.454
+Iteration 8400/13600: 4.92 it/s. Loss: 2.668 Accuracy: 0.455
+
+---------- Epoch 15/20 ----------
+Iteration 8500/13600: 4.95 it/s. Loss: 2.621 Accuracy: 0.457
+Input sentence:	where are you?
+Output sentence:	tf.Tensor(b'whither art thou?', shape=(), dtype=string)
+Iteration 8600/13600: 4.89 it/s. Loss: 2.623 Accuracy: 0.459
+Iteration 8700/13600: 4.91 it/s. Loss: 2.611 Accuracy: 0.462
+Iteration 8800/13600: 4.92 it/s. Loss: 2.602 Accuracy: 0.464
+Iteration 8900/13600: 4.93 it/s. Loss: 2.593 Accuracy: 0.465
+Iteration 9000/13600: 4.93 it/s. Loss: 2.591 Accuracy: 0.466
+Input sentence:	where are you?
+Output sentence:	tf.Tensor(b'whither shall you speak?', shape=(), dtype=string)
+
+---------- Epoch 16/20 ----------
+Iteration 9100/13600: 4.95 it/s. Loss: 2.549 Accuracy: 0.474
+Iteration 9200/13600: 4.95 it/s. Loss: 2.544 Accuracy: 0.473
+Iteration 9300/13600: 4.95 it/s. Loss: 2.537 Accuracy: 0.474
+Iteration 9400/13600: 4.95 it/s. Loss: 2.528 Accuracy: 0.476
+Iteration 9500/13600: 4.95 it/s. Loss: 2.527 Accuracy: 0.476
+Input sentence:	where are you?
+Output sentence:	tf.Tensor(b'where are you?', shape=(), dtype=string)
+Iteration 9600/13600: 4.93 it/s. Loss: 2.523 Accuracy: 0.477
+
+---------- Epoch 17/20 ----------
+Iteration 9700/13600: 4.95 it/s. Loss: 2.457 Accuracy: 0.485
+Iteration 9800/13600: 4.95 it/s. Loss: 2.457 Accuracy: 0.485
+Iteration 9900/13600: 4.95 it/s. Loss: 2.453 Accuracy: 0.486
+Iteration 10000/13600: 4.95 it/s. Loss: 2.454 Accuracy: 0.487
+Input sentence:	where are you?
+Output sentence:	tf.Tensor(b'where art thou?', shape=(), dtype=string)
+Iteration 10100/13600: 4.92 it/s. Loss: 2.448 Accuracy: 0.488
+Iteration 10200/13600: 4.93 it/s. Loss: 2.449 Accuracy: 0.488
+
+---------- Epoch 18/20 ----------
+Iteration 10300/13600: 4.95 it/s. Loss: 2.438 Accuracy: 0.489
+Iteration 10400/13600: 4.96 it/s. Loss: 2.413 Accuracy: 0.492
+Iteration 10500/13600: 4.95 it/s. Loss: 2.401 Accuracy: 0.494
+Input sentence:	where are you?
+Output sentence:	tf.Tensor(b'where dost thou?', shape=(), dtype=string)
+Iteration 10600/13600: 4.92 it/s. Loss: 2.394 Accuracy: 0.496
+Iteration 10700/13600: 4.93 it/s. Loss: 2.380 Accuracy: 0.498
+Iteration 10800/13600: 4.94 it/s. Loss: 2.380 Accuracy: 0.498
+
+---------- Epoch 19/20 ----------
+Iteration 10900/13600: 4.94 it/s. Loss: 2.337 Accuracy: 0.506
+Iteration 11000/13600: 4.94 it/s. Loss: 2.333 Accuracy: 0.507
+Input sentence:	where are you?
+Output sentence:	tf.Tensor(b'where art thou?', shape=(), dtype=string)
+Iteration 11100/13600: 4.89 it/s. Loss: 2.346 Accuracy: 0.503
+Iteration 11200/13600: 4.90 it/s. Loss: 2.329 Accuracy: 0.506
+Iteration 11300/13600: 4.91 it/s. Loss: 2.321 Accuracy: 0.507
+Iteration 11400/13600: 4.91 it/s. Loss: 2.319 Accuracy: 0.508
+
+---------- Epoch 20/20 ----------
+Iteration 11500/13600: 4.95 it/s. Loss: 2.301 Accuracy: 0.511
+Input sentence:	where are you?
+Output sentence:	tf.Tensor(b'where are you?', shape=(), dtype=string)
+Iteration 11600/13600: 4.88 it/s. Loss: 2.271 Accuracy: 0.514
+Iteration 11700/13600: 4.91 it/s. Loss: 2.275 Accuracy: 0.514
+Iteration 11800/13600: 4.92 it/s. Loss: 2.265 Accuracy: 0.517
+Iteration 11900/13600: 4.93 it/s. Loss: 2.258 Accuracy: 0.518
+Iteration 12000/13600: 4.93 it/s. Loss: 2.258 Accuracy: 0.518
+Input sentence:	where are you?
+Output sentence:	tf.Tensor(b'where are you?', shape=(), dtype=string)
+****************************************************************************************************
+
+TRAINING COMPLETE.
+
+****************************************************************************************************
+
+
+Total time: 41min. 05sec.
