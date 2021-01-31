@@ -1,6 +1,6 @@
 # Shakespeare-Translator
 
-![alt text](https://github.com/jmkernes/Shakespeare-Translator/blob/main/where_art_thou.png?raw=true)
+![alt text](https://github.com/jmkernes/Shakespeare-Translator/blob/main/where_art_thou.png?=75x75)
 
 *Attention weights of block 2 of the final layer of the Decoder. Maybe "wherefore" would have been a better translation, but alas...*
 
