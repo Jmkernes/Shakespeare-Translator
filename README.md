@@ -41,7 +41,7 @@ The stucture of this repository is as follows:
 * utils.py - some one-off useful functions, like a print bar, masking, and model prediction.
 * train.py - script for training the model. Default parameters are in the base_model.sh bash script.
 * colab_trainer.ipynb - A jupyter notebook that is ready for use on google colab. A much easier way to train: you can use a GPU, view the tensorboard logs in real time, and easily tweak the model as it trains.
-* inference.ipynb - A jupyter notebook for playing around with the trained model. Also contains the setup for serializing the model to a SavedModel format for serving (we don't use it since I don't have server to host from).
+* inference.ipynb - A jupyter notebook for playing around with the trained model. You can get attention weight plots here (it's also in the translte.py file, but I wanted that to be strictly for text). Also contains the setup for serializing the model to a SavedModel format for serving (we don't use it since I don't have server to host from).
 * translator.py - This is the fun one! I recommend running it. It's a simple python script where you can type in text and get back translations.
 
 ## translator.py and an insult generator
