@@ -40,3 +40,15 @@ The stucture of this repository is as follows:
 * inference.ipynb - A jupyter notebook for playing around with the trained model. Also contains the setup for serializing the model to a SavedModel format for serving (we don't use it since I don't have server to host from)
 * translator.py - This is the fun one! I recommend running it. It's a simple python script where you can type in text and get back translations.
 
+## translator.py
+
+This is the main script, try running it. Below is a screenshot of what it looks like in the terminal
+
+![alt text](https://github.com/jmkernes/Shakespeare-Translator/blob/main/prog_screenshot.png?raw=true)
+
+One of the fun things you can do is use this as an insult generator. The Minimum Bayes Risk generator will generate 16 random translations, and order them based on similarity. The similarity score is computed as follows: Each sequence is compared to every other sequence using python's difflib module method SequenceMatcher, resulting in a similarity score. A given entry is scored based on how similar it is to every other entry. We then rank sequences in order from most similar (meaning they sequence resembles the "mean" sequence) to least similar. An alternative similarity test using a count vectorizer is at the end of the inference notebook. It doesn't work as well; it loses temporal alignment and favors repetitive nonsensical translations.
+
+## Using the data
+
+Please use it! I ran out of GPU power, so I couldn't fine tune more. I strongly recommend using the data however to try to do better! Any comments, questions, concerns please email me or open a pull request. Thanks!
+
