@@ -5,6 +5,7 @@
 *Attention weights of block 2 of the final layer of the Decoder. Maybe "wherefore" would have been a better translation, but alas...*
 
 -----------------------------------------------
+\*\* Requirements: in addition to tensorflow 2.0+, this project also requires tensorflow_text, and optionally SentencePiece if you want to train your own tokenizer.
 
 As the title suggests, the goal of this project is to translate a sentence from english to shakespearian english. More specifically, we provide two types of inference:
 
