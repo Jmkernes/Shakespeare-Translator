@@ -51,7 +51,7 @@ This is the main script, try running it. Below is a screenshot of what it looks 
 
 <img src="https://github.com/jmkernes/Shakespeare-Translator/blob/main/prog_screenshot.png" alt="drawing" width="400"/>
 
-One of the fun things you can do is use this as an insult generator. The Minimum Bayes Risk generator will generate 16 random translations, and order them based on similarity. The similarity score is computed as follows: Each sequence is compared to every other sequence using python's difflib module method SequenceMatcher, resulting in a similarity score. A given entry is scored based on how similar it is to every other entry. We then rank sequences in order from most similar (meaning they sequence resembles the "mean" sequence) to least similar. An alternative similarity test using a count vectorizer is at the end of the inference notebook. It doesn't work as well; it loses temporal alignment and favors repetitive nonsensical translations.
+One of the fun things you can do is use this as an insult generator. The Minimum Bayes Risk generator will generate 16 random translations, and order them based on similarity. The similarity score is computed as follows: Each sequence is compared to every other sequence using python's difflib module method SequenceMatcher, resulting in a similarity score. A given entry is scored based on how similar it is to every other entry. We then rank sequences in order from most similar (meaning the sequence resembles the "mean" sequence) to least similar. An alternative similarity test using a count vectorizer is at the end of the inference notebook. It doesn't work as well; it loses temporal alignment and favors repetitive nonsensical translations.
 
 ## Using the data
 
