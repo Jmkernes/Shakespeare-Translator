@@ -13,7 +13,7 @@ As the title suggests, the goal of this project is to translate a sentence from 
 
 2) Generative translation. This uses a temperature parameter to sample possible translations. It may not be as accurate, but certainly more fun to give the model some freedom. We also implement a basic Minimum Bayes Risk inference on these translations to try to pick the "best" translation.
 
-The stucture of this repository is as follows:
+The structure of this repository is as follows:
 
 * **Web_scraping/**
     There is no English->Shakespeare dataset, so I had to create one. That's the goal of this folder.
